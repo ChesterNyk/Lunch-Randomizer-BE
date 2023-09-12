@@ -7,6 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LunchRecordsRepository extends JpaRepository<LunchRecords, Long> {
-    Page<LunchRecords> findAllRecords();
 
 }
