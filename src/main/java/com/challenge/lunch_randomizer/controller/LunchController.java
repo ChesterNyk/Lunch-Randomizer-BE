@@ -36,7 +36,14 @@ public class LunchController {
         CommonResponseBody responseBody = new CommonResponseBody();
 
         try {
-            // Get all records from DB
+            List<LunchRecordDto> responseList = lunchRecordsService.getAllLunchRecords();
+
+            Map<String, Object> dataMap = new HashMap<>();
+            dataMap.put("list", responseList);
+
+            responseBody.setResult(CommonResponseBody.KEY_RESULT_SUCCESS);
+            responseBody.setData(dataMap);
+
         } catch (Exception e ) {
             log.error("ERROR : " + e);
             responseBody.setResult(CommonResponseBody.KEY_RESULT_FAIL);
@@ -57,7 +64,13 @@ public class LunchController {
 
         try {
             // delete from DB the records passed in RequestBody
+            List<LunchRecordDto> response = lunchRecordsService.deleteLunchRecords(requestBody);
 
+            Map<String, Object> dataMap = new HashMap<>();
+            dataMap.put("list", response);
+
+            responseBody.setResult(CommonResponseBody.KEY_RESULT_SUCCESS);
+            responseBody.setData(dataMap);
         } catch (Exception e ) {
             log.error("ERROR : " + e);
             responseBody.setResult(CommonResponseBody.KEY_RESULT_FAIL);

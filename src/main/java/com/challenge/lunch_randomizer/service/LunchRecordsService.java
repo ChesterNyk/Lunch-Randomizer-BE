@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface LunchRecordsService {
     // Get all lunch records from DB
-    PaginatedResponseEnvelope<LunchRecordDto> getAllLunchRecords();
+    List<LunchRecordDto> getAllLunchRecords();
 
     // delete records based on selected Ids
     List<LunchRecordDto> deleteLunchRecords(List<RecordsIdRequestDto> requestBody);
