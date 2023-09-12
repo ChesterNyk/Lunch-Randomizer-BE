@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -22,4 +23,7 @@ public class LunchRecords {
 
     @Column(name = "CREATED_DATETIME")
     private Date createdDateTime;
+
+    @OneToMany(mappedBy = "lunchRecords", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Choices> choicesList;
 }

@@ -14,6 +14,10 @@ public class Choices {
     @Column(name = "CHOICES_ID", unique = true, nullable = false)
     private Long choicesId;
 
+    @ManyToOne
+    @JoinColumn(name = "LUNCH_RECORDS_ID", referencedColumnName = "LUNCH_RECORDS_ID", nullable = false)
+    private LunchRecords lunchRecords;
+
     @Column(name= "RESTAURANT_NAME")
     private String restaurantName;
 
