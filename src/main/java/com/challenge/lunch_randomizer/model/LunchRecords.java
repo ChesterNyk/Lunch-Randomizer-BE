@@ -17,6 +17,9 @@ public class LunchRecords {
     @Column(name = "FINAL_LOCATION")
     private String finalLocation;
 
+    @Column(name= "LOCATION_LINK")
+    private String locationLink;
+
     @Column(name = "CREATED_DATETIME")
     private Date createdDateTime;
 }
