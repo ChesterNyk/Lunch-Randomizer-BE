@@ -22,7 +22,7 @@ public class LunchRecords {
     private String locationLink;
 
     @Column(name = "CREATED_DATETIME")
-    private Date createdDateTime;
+    private String createdDateTime;
 
     @OneToMany(mappedBy = "lunchRecords", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Choices> choicesList;

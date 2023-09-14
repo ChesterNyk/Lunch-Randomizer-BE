@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -86,6 +87,12 @@ public class LunchRecordsServiceImpl implements  LunchRecordsService {
     @Override
     public LunchRecordDto randomizeLunchOptions(List<LunchOptionsRequestDto> request) {
         log.info("BEGIN | RANDOMIZE LUNCH OPTIONS");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        Date newDate = new Date();
+
+        String date = dateFormat.format(newDate);
+
         LunchRecordDto response = new LunchRecordDto();
 
         // Randomise list and get value
@@ -97,7 +104,7 @@ public class LunchRecordsServiceImpl implements  LunchRecordsService {
 
         // save final location + choices into db for response
         response.setFinalLocation(decision.getOptions());
-        response.setCreatedDateTime(new Date());
+        response.setCreatedDateTime(date);
 
         List<ChoicesListResponseDto> optionsList = new ArrayList<>();
         request.forEach(requestOptions -> {
@@ -115,9 +122,15 @@ public class LunchRecordsServiceImpl implements  LunchRecordsService {
     private void saveLunchChoiceRecords (String finalLocation, List<LunchOptionsRequestDto> request) {
         log.info("BEGIN | SAVING LUNCH + CHOICES RECORDS");
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        Date newDate = new Date();
+
+        String date = dateFormat.format(newDate);
+
         LunchRecords lunchRecords = new LunchRecords();
         lunchRecords.setFinalLocation(finalLocation);
-        lunchRecords.setCreatedDateTime(new Date());
+        lunchRecords.setCreatedDateTime(date);
 
         lunchRecordsRepository.save(lunchRecords);
 
@@ -126,7 +139,7 @@ public class LunchRecordsServiceImpl implements  LunchRecordsService {
 
             choices.setLunchRecords(lunchRecords);
             choices.setRestaurantName(requestOptions.getOptions());
-            choices.setCreatedDateTime(new Date());
+            choices.setCreatedDateTime(date);
 
             choicesRepository.save(choices);
         });

@@ -12,5 +12,5 @@ public class LunchRecordDto {
     private Long lunchRecordId;
     private List<ChoicesListResponseDto> optionsList;
     private String finalLocation;
-    private Date createdDateTime;
+    private String createdDateTime;
 }

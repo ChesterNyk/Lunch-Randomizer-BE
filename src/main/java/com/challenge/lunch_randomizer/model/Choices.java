@@ -25,5 +25,5 @@ public class Choices {
     private String locationLink;
 
     @Column(name = "CREATED_DATETIME")
-    private Date createdDateTime;
+    private String createdDateTime;
 }
